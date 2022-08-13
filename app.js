@@ -3,6 +3,30 @@
 // load modules
 const express = require('express');
 const morgan = require('morgan');
+const indexRouter = require('./routes/index');
+const apiRouter = require('./routes/api');
+const Sequelize = require('sequelize');
+const sequelize = new Sequelize({ //db connection
+  dialect: 'sqlite',
+  storage: 'fsjstd-restapi.db'
+});
+
+class User extends Sequelize.Model {}
+// Use Sequelize authentication function to test database connection
+(async () => {
+  try {
+    await sequelize.authenticate();
+    console.log('Connection to the database successful!');
+    main()
+
+  
+  } catch (error) {
+    console.error('Error connecting to the database: ', error);
+  }
+})();
+
+function main() {
+
 
 // variable to enable global error logging
 const enableGlobalErrorLogging = process.env.ENABLE_GLOBAL_ERROR_LOGGING === 'true';
@@ -14,18 +38,20 @@ const app = express();
 app.use(morgan('dev'));
 
 // setup a friendly greeting for the root route
-app.get('/', (req, res) => {
-  res.json({
-    message: 'Welcome to the REST API project!',
-  });
-});
-
+// app.get('/', (req, res) => {
+//   res.json({
+//     message: 'Welcome to the REST API project!',
+//   });
+// });
+app.use('/', indexRouter);
+app.use('/api', apiRouter);
 // send 404 if no other route matched
 app.use((req, res) => {
   res.status(404).json({
     message: 'Route Not Found',
   });
 });
+
 
 // setup a global error handler
 app.use((err, req, res, next) => {
@@ -40,9 +66,10 @@ app.use((err, req, res, next) => {
 });
 
 // set our port
-app.set('port', process.env.PORT || 5000);
+app.set('port', process.env.PORT || 5001);
 
 // start listening on our port
 const server = app.listen(app.get('port'), () => {
   console.log(`Express server is listening on port ${server.address().port}`);
 });
+};
