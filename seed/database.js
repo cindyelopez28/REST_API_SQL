@@ -63,7 +63,6 @@ class Database {
     const usersWithHashedPasswords = [];
 
     for (const user of users) {
-      this.log(user)
       const hashedPassword = await bcryptjs.hash(user.password, 10);
       usersWithHashedPasswords.push({ ...user, password: hashedPassword });
     }

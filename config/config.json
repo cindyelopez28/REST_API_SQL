@@ -3,9 +3,9 @@
     "username": "root",
     "password": null,
     "database": "database_development",
+    "storage": "fsjstd-restapi.db",
     "host": "127.0.0.1",
-    "dialect": "sqlite",
-    "storage": "fsjstd-restapi.db"
+    "dialect": "sqlite"
   },
   "test": {
     "username": "root",
