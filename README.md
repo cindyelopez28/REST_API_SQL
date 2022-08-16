@@ -1,14 +1,3 @@
-# REST API (Team TreeHouse Project #9)
-### -----Backend REST API using Express and Sequelize.
+Project 9 - REST API - Treehouse
 
-# Introduction
-This is project #9 for my full stack tech degree thru Team Treehouse. 
-Using Javascripts popular framework Express and Sequelize ORM I built the backend to a basic "library app" that creates reads updates and deletes "courses". 
-I used Postman to verify my results. 
-
-
-# Technologies Used:
-**JavaScript,**
-**Express,**
-**Sequelize**
-
+"In this project, you’ll create a REST API using Express. This API will provide a way to administer a school database containing information about users and courses. Users can interact with the database to create new courses, retrieve information on existing courses, and update or delete existing courses. To make changes to the database, users will be required to log in so the API will also allow users to create a new account or retrieve information on an existing account."
